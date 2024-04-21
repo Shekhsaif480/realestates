@@ -7,10 +7,6 @@ import { addDoc, collection, getDocs } from "firebase/firestore";
 import {v4} from 'uuid';
 
 
-
-
-
-
 const AddPropertyModal = ({ modalOpened, setModalOpened }) => {
 
   const [img , setImg] = useState('');
@@ -81,16 +77,17 @@ const getData = async () =>{
 
 
 
-  const handleReset = () => {
-    setImg(null);
-    setName(null);
-    setAddress(null);
-    setPrice(null);
-    setAmenities(null);
-    setBedrooms(null);
-    setWashrooms(null);
-    setArea(null);
-  };
+const handleReset = () => {
+  setImg(null);
+  setName('');
+  setAddress('');
+  setPrice('');
+  setAmenities([]);
+  setBedrooms('');
+  setWashrooms('');
+  setArea('');
+};
+
 
 
   useEffect(()=>{

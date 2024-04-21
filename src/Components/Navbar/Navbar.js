@@ -5,6 +5,9 @@ import { auth, provider } from '../../firebase';
 import AddPropertyModal from '../AddPropertyModal/AddPropertyModal';
 import useAuthCheck from '../../hooks/useAuthCheck';
 
+
+
+
 const Navbar = () => {
     const [modalOpened, setModalOpened] = useState(false);
     const { user, validateLogin } = useAuthCheck();
@@ -31,13 +34,16 @@ const Navbar = () => {
         }).catch((err) => alert(err.message));
     };
 
+
+
     const Links = [
-        { name: "Properties", link: "/" },
+        { name: "Properties",link:'/Properties' },
         { name: "Contact", link: "mailto:shaikhtausif7557@gmail.com" },
         { name: "Add Property", link: "", onClick: handleAddPropertyClick },
     ];
 
     const [open, setOpen] = useState(false);
+
 
     return (
         <div className='w-full fixed top-0 left-0 bg-transparent' >

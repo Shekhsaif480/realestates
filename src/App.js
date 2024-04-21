@@ -4,6 +4,8 @@ import Navbar from './Components/Navbar/Navbar';
 import bg from "./imgs/bg.png"
 
 
+
+
 function App() {
 
   return (
