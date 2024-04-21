@@ -16,7 +16,6 @@ import {v4} from 'uuid';
 
 const AddPropertyModal = ({ modalOpened, setModalOpened }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const [txt , setTxt] = useState('');
   const [img , setImg] = useState('');
   const [data,setData] = useState([]);
 
@@ -41,6 +40,15 @@ const AddPropertyModal = ({ modalOpened, setModalOpened }) => {
 } 
 const handleClick = async () =>{
   const propertyId = v4();
+      setImg(null);
+      setName(null);
+      setAddress(null);
+      setPrice(null);
+      setAmenities(null);
+      setBedrooms(null);
+      setWashrooms(null);
+      setArea(null);
+    setModalOpened(false);
   const valRef = collection(txtDB,'txtData')
   await addDoc(valRef,{id: propertyId,
     imgUrl:img,
@@ -103,22 +111,14 @@ console.log(data,"datadata")
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       closeOnClickOutside
+      
     >
       <Container sx={{ height: 'auto', width: '80%', margin: '10vh auto', backgroundColor: 'white', padding: '20px' }}>
-        <Stepper activeStep={activeStep}>
-          <Step>
-            <StepLabel>Image Upload</StepLabel>
-          </Step>
-          <Step>
-            <StepLabel>Basic Details</StepLabel>
-          </Step>
-        </Stepper>
-        {activeStep === 0 ? (
-          <div className='mt-20 '>
-            {/* <BasicDetails /> */}
-            <h2 className="text-2xl font-semibold mb-4">Add Information About Your Property</h2>
+        
+            <div className="max-w-full mx-auto p-6 bg-white rounded-md shadow-md overflow-y-auto max-h-[600px]">
+            <label className="text-2xl font-semibold mb-8 block mx-auto text-center">Property Details</label>
             <div className='bg-white grid'>
-            <label className="block mb-2">Name:</label>
+            <label className="block mb-2 font-medium">Name:</label>
             <input
                 type="text"
                 placeholder="Name"
@@ -126,7 +126,7 @@ console.log(data,"datadata")
                 onChange={(event) => setName(event.target.value)}
                 className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
-            <label className="block mb-2">Address:</label>
+            <label className="block mb-2 font-medium">Address:</label>
             <input
                 type="text"
                 placeholder="Address"
@@ -134,7 +134,7 @@ console.log(data,"datadata")
                 onChange={(event) => setAddress(event.target.value)}
                 className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
-            <label className="block mb-2">Price:</label>
+            <label className="block mb-2 font-medium">Price:</label>
             <input
                 type="number"
                 placeholder="Price"
@@ -142,7 +142,7 @@ console.log(data,"datadata")
                 onChange={(event) => setPrice(event.target.value)}
                 className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
-            <label className="block mb-2">Amenities:</label>
+            <label className="block mb-2 font-medium">Amenities:</label>
             <div className="mb-4 space-y-2">
                 <div>
                     <input
@@ -166,7 +166,7 @@ console.log(data,"datadata")
                     <label htmlFor="parking">Parking</label>
                 </div>
             </div>
-            <label className="block mb-2">Number of Bedrooms:</label>
+            <label className="block mb-2 font-medium">Number of Bedrooms:</label>
             <input
                 type="number"
                 placeholder="Enter the number of bedrooms"
@@ -174,7 +174,7 @@ console.log(data,"datadata")
                 onChange={(event) => setBedrooms(event.target.value)}
                 className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
-            <label className="block mb-2">Number of Washrooms:</label>
+            <label className="block mb-2 font-medium">Number of Washrooms:</label>
             <input
                 type="number"
                 placeholder="Enter the number of washrooms"
@@ -182,7 +182,7 @@ console.log(data,"datadata")
                 onChange={(event) => setWashrooms(event.target.value)}
                 className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
-            <label className="block mb-2">Area in Square Feet:</label>
+            <label className="block mb-2 font-medium">Area in Square Feet:</label>
             <input
                 type="number"
                 placeholder="Enter area of your property"
@@ -190,12 +190,12 @@ console.log(data,"datadata")
                 onChange={(event) => setArea(event.target.value)}
                 className="w-full mb-4 px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             />
+            <label className="block mb-2 font-medium">Images:</label>
               <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " id="multiple_files" type="file" onChange={(e) =>handleUpload(e)}/>
-              <Button onClick={handleClick}>submit details</Button>
+              <Button onClick={handleClick}>Upload</Button>
 
             </div>
-            <Button disabled={activeStep === 0} onClick={handleBack}>Back</Button>
-            <Button onClick={handleNext}>Next</Button>
+            
               {/* {
                 data.map(value=><div>
                     <h1>{value.txtVal}</h1>
@@ -203,18 +203,8 @@ console.log(data,"datadata")
                 </div>)
              } */}
           </div>
-        ) : activeStep === 2 ? (
-          <React.Fragment>
-            <Typography>All steps completed</Typography>
-            <Button onClick={handleFinish}>Finish</Button>
-            <Button onClick={handleReset}>Reset</Button>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Button disabled={activeStep === 0} onClick={handleBack}>Back</Button>
-            <Button onClick={handleNext}>Next</Button>
-          </React.Fragment>
-        )}
+         
+        
       </Container>
     </Modal >
   );
