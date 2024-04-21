@@ -32,8 +32,9 @@ const AddPropertyModal = ({ modalOpened, setModalOpened }) => {
     })
 } 
 const handleClick = async () =>{
+  const propertyId = v4();
   const valRef = collection(txtDB,'txtData')
-  await addDoc(valRef,{txtVal:txt,imgUrl:img})
+  await addDoc(valRef,{id: propertyId,name:txt,imgUrl:img})
   alert("Data added successfully")
 }
  
