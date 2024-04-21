@@ -1,8 +1,5 @@
 import React, { useState , useEffect } from 'react';
-import { Modal, Container, Typography, Button } from '@mui/material';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
+import { Modal, Container, Button } from '@mui/material';
 import { imgDB,txtDB } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection, getDocs } from "firebase/firestore";
@@ -15,7 +12,7 @@ import {v4} from 'uuid';
 
 
 const AddPropertyModal = ({ modalOpened, setModalOpened }) => {
-  const [activeStep, setActiveStep] = useState(0);
+
   const [img , setImg] = useState('');
   const [data,setData] = useState([]);
 
@@ -82,24 +79,19 @@ const getData = async () =>{
   console.log(dataDb)
 }
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
 
   const handleReset = () => {
-    setActiveStep(0);
+    setImg(null);
+    setName(null);
+    setAddress(null);
+    setPrice(null);
+    setAmenities(null);
+    setBedrooms(null);
+    setWashrooms(null);
+    setArea(null);
   };
 
-  const handleFinish = () => {
-    // Reset all states to initial values
-    setActiveStep(0);
-    setImg(null);
-    setModalOpened(false);
-  };
 
   useEffect(()=>{
     getData()
@@ -195,6 +187,7 @@ console.log(data,"datadata")
             <label className="block mb-2 font-medium">Images:</label>
               <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " id="multiple_files" type="file" onChange={(e) =>handleUpload(e)}/>
               <Button onClick={handleClick}>Upload</Button>
+              <Button onClick={handleReset}>Reset</Button>
 
             </div>
             
