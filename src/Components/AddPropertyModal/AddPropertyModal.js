@@ -58,7 +58,9 @@ const handleClick = async () =>{
     amenities: amenities,
     no_of_bedrooms: no_of_bedrooms,
     no_of_washrooms: no_of_washrooms,
-    area_in_square_fts: area_in_square_fts,})
+    area_in_square_fts: area_in_square_fts,}).catch((error) => {
+      alert("Error uploading data")
+  });
   alert("Data added successfully")
 }
 const handleCheckboxChange = (event) => {
