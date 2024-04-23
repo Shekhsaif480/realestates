@@ -5,11 +5,13 @@ import PropertiesDisplayPage from '../src/Components/Properties/PropertiesDispla
 import PropertyDetail from './Components/Properties/PropertyDetail';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Hero from './Components/Hero/Hero';
 
 const Home = () => {
   return (
     <div style={{ backgroundImage: `url(${bg})`, height: "100vh", backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
       <Navbar />
+      <Hero/>
     </div>
   );
 };
