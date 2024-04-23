@@ -1,18 +1,31 @@
-
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import bg from "./imgs/bg.png"
+import bg from "./imgs/bg.png";
+import PropertiesDisplayPage from '../src/Components/Properties/PropertiesDisplayPage';
+import PropertyDetail from './Components/Properties/PropertyDetail';
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
-
-function App() {
-
+const Home = () => {
   return (
-    <div style={{ backgroundImage: `url(${bg})`,height:"100vh",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
-    <Navbar/>
+    <div style={{ backgroundImage: `url(${bg})`, height: "100vh", backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
+      <Navbar />
     </div>
   );
-}
+};
+
+const App = () => {
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Properties" element={<PropertiesDisplayPage />} />
+          <Route path="/property/:id" element={<PropertyDetail />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+};
 
 export default App;

@@ -1,8 +1,8 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState  } from 'react';
 import { Modal, Container, Button } from '@mui/material';
 import { imgDB,txtDB } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 import {v4} from 'uuid';
 
@@ -10,7 +10,7 @@ import {v4} from 'uuid';
 const AddPropertyModal = ({ modalOpened, setModalOpened }) => {
 
   const [img , setImg] = useState('');
-  const [data,setData] = useState([]);
+  // const [data,setData] = useState([]);
 
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -67,13 +67,13 @@ const handleCheckboxChange = (event) => {
   }
 };
  
-const getData = async () =>{
-  const valRef = collection(txtDB,'txtData')
-  const dataDb = await getDocs(valRef)
-  const allData = dataDb.docs.map(val=>({...val.data(),id:val.id}))
-  setData(allData)
-  console.log(dataDb)
-}
+// const getData = async () =>{
+//   const valRef = collection(txtDB,'txtData')
+//   const dataDb = await getDocs(valRef)
+//   const allData = dataDb.docs.map(val=>({...val.data(),id:val.id}))
+//   setData(allData)
+//   console.log(dataDb)
+// }
 
 
 
@@ -90,10 +90,10 @@ const handleReset = () => {
 
 
 
-  useEffect(()=>{
-    getData()
-})
-console.log(data,"datadata")
+//   useEffect(()=>{
+//     getData()
+// })
+// console.log(data,"datadata")
 
   return (
     <Modal
