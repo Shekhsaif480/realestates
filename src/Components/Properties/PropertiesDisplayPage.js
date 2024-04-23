@@ -7,6 +7,8 @@ const PropertiesDisplayPage = () => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   useEffect(() => {
     const fetchProperties = async () => {
@@ -36,15 +38,26 @@ const PropertiesDisplayPage = () => {
   };
 
   const filterProperties = () => {
-    const filtered = properties.filter(property =>
-      selectedAmenities.some(amenity => property.amenities.includes(amenity))
-    );
+    let filtered = properties;
+
+    if (selectedAmenities.length > 0) {
+      filtered = filtered.filter(property =>
+        selectedAmenities.some(amenity => property.amenities.includes(amenity))
+      );
+    }
+
+    if (minPrice !== '' && maxPrice !== '') {
+      filtered = filtered.filter(property =>
+        property.price >= minPrice && property.price <= maxPrice
+      );
+    }
+
     setFilteredProperties(filtered);
   };
 
   useEffect(() => {
     filterProperties();
-  }, [selectedAmenities]);
+  }, [selectedAmenities, minPrice, maxPrice]);
 
   const allAmenities = properties.reduce((acc, property) => {
     property.amenities.forEach(amenity => {
@@ -73,6 +86,23 @@ const PropertiesDisplayPage = () => {
             <label htmlFor={amenity} className="ml-2">{amenity}</label>
           </div>
         ))}
+      </div>
+      
+      <div className="flex mb-4">
+        <label className="mr-2">Min Price:</label>
+        <input
+          type="number"
+          value={minPrice}
+          onChange={e => setMinPrice(e.target.value)}
+          className="border border-gray-300 rounded-md px-2 py-1 mr-2"
+        />
+        <label className="mr-2">Max Price:</label>
+        <input
+          type="number"
+          value={maxPrice}
+          onChange={e => setMaxPrice(e.target.value)}
+          className="border border-gray-300 rounded-md px-2 py-1"
+        />
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
