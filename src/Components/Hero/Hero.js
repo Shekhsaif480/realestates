@@ -1,6 +1,7 @@
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-import heroimg from "../../imgs/download.jpeg";
+import heroimg from "../../imgs/hero.jpg";
+import "./Hero.css"
 
 const Hero = () => {
   return (

@@ -56,7 +56,7 @@ const Navbar = () => {
                         <path d="M12 7.875a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" />
                     </svg>
 
-                    <span className="w-7 h-7 text-blue-600">AvenueRealty</span>
+                    <span className="w-7 h-7 text-blue-600">RealEstateHub</span>
                 </div>
                 {/* Menu icon */}
                 <div onClick={() => setOpen(!open)} className='absolute right-8 top-6 cursor-pointer md:hidden w-7 h-7'>
